@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "graphql-yoga": "^1.14.12",
-    "prisma-binding": "^2.1.0"
+    "prisma-binding": "^2.1.0",
+    "ws": "^5.2.1"
   }
 }
