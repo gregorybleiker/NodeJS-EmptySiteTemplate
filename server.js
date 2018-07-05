@@ -37,7 +37,7 @@ const options = {
 //  playground: '/playground',
 }
 server.start(options, () =>
-console.log(`GraphQL server is running on http://localhost:8080`)
+console.log(`GraphQL server is running on http://localhost:8080 `)
 );
 
 /*
