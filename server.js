@@ -19,6 +19,9 @@ const resolvers = {
 const server = new GraphQLServer({
   typeDefs: "src/schema.graphql",
   resolvers,
+  resolverValidationOptions: {
+    requireResolversForResolveType: false
+  },
   context: req => ({
     ...req,
     prisma: new Prisma({
@@ -29,9 +32,9 @@ const server = new GraphQLServer({
 });
 const options = {
   port: 8080,
-  endpoint: '/graphql',
-  subscriptions: '/subscriptions',
-  playground: '/playground',
+//  endpoint: '/graphql',
+//  subscriptions: '/subscriptions',
+//  playground: '/playground',
 }
 server.start(options, () =>
   console.log(`GraphQL server is running on http://localhost:8080`)
