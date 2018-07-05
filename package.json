@@ -1,12 +1,12 @@
 {
-  "name": "application-name",
-  "version": "2.0.0",
-  "private": true,
+  "name": "graphql-sample",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
   "scripts": {
     "start": "node server"
-  },  
-"license": "Apache",
-"engines": {
+  },
+  "engines": {
     "node": "~0.10.0 || ~4.2.0"
   }
 }

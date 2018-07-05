@@ -1,0 +1,6 @@
+type pomodoro {
+  id: ID! @unique
+  name: String!
+  pomodoros: Int!
+  completed: Boolean!
+}
