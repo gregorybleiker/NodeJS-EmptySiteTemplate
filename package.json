@@ -6,6 +6,9 @@
   "scripts": {
     "start": "node server"
   },
+  "engines": {
+    "node": "8.9.4"
+  },
   "dependencies": {
     "graphql-yoga": "^1.14.12",
     "prisma-binding": "^2.1.0"
