@@ -35,6 +35,7 @@ const server = new GraphQLServer({
       typeDefs: "src/generated/prisma.graphql",
       endpoint: "https://eu1.prisma.sh/gregory-bleiker-1224dd/prisma_sample/dev"
     })
+    
   })
 });
 const options = {
