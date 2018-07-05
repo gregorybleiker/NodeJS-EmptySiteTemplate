@@ -2,16 +2,23 @@ const { GraphQLServer } = require("graphql-yoga");
 const { Prisma } = require("prisma-binding");
 
 const resolvers = {
-  Query: {
+    Query: {
     sePomodoros: (_, args, context, info) => {
-      return context.prisma.query.pomodoroes(
-        {
-          where: {
-            name_contains: args.searchString
-          }
-        },
-        info
-      );
+        try{
+            
+            let result = context.prisma.query.pomodoroes(
+                {
+                    where: {
+                        name_contains: args.searchString
+                    }
+                },
+                info
+            );
+            return result;
+        }
+        catch(e) {
+            return JSON.stringify(e.message)
+        }
     }
   }
 };
