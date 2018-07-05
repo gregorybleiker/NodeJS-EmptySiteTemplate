@@ -32,9 +32,9 @@ const server = new GraphQLServer({
 });
 const options = {
   port: 8080,
-//  endpoint: '/graphql',
-//  subscriptions: '/subscriptions',
-//  playground: '/playground',
+  endpoint: '/graphql',
+  subscriptions: '/subscriptions',
+  playground: '/playground',
 }
 server.start(options, () =>
 console.log(`GraphQL server is running on http://localhost:8080 `)
