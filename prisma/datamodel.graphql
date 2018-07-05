@@ -1,0 +1,17 @@
+type Pomodoro {
+  id: ID! @unique
+  name: String!
+  pomodoros: Int!
+  completed: Boolean!
+  detail: Detail
+}
+
+type Detail{
+  id: ID! @unique
+  name: String!
+}
+
+type PrivateDetail{
+  id: ID! @unique
+  name: String!
+}

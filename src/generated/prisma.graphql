@@ -1,0 +1,711 @@
+# source: https://eu1.prisma.sh/gregory-bleiker-1224dd/prisma_sample/dev
+# timestamp: Thu Jul 05 2018 16:30:28 GMT+0200 (Central European Summer Time)
+
+type AggregateDetail {
+  count: Int!
+}
+
+type AggregatePomodoro {
+  count: Int!
+}
+
+type AggregatePrivateDetail {
+  count: Int!
+}
+
+type BatchPayload {
+  """The number of nodes that have been affected by the Batch operation."""
+  count: Long!
+}
+
+type Detail implements Node {
+  id: ID!
+  name: String!
+}
+
+"""A connection to a list of items."""
+type DetailConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [DetailEdge]!
+  aggregate: AggregateDetail!
+}
+
+input DetailCreateInput {
+  name: String!
+}
+
+input DetailCreateOneInput {
+  create: DetailCreateInput
+  connect: DetailWhereUniqueInput
+}
+
+"""An edge in a connection."""
+type DetailEdge {
+  """The item at the end of the edge."""
+  node: Detail!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum DetailOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type DetailPreviousValues {
+  id: ID!
+  name: String!
+}
+
+type DetailSubscriptionPayload {
+  mutation: MutationType!
+  node: Detail
+  updatedFields: [String!]
+  previousValues: DetailPreviousValues
+}
+
+input DetailSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [DetailSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [DetailSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [DetailSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: DetailWhereInput
+}
+
+input DetailUpdateDataInput {
+  name: String
+}
+
+input DetailUpdateInput {
+  name: String
+}
+
+input DetailUpdateOneInput {
+  create: DetailCreateInput
+  connect: DetailWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: DetailUpdateDataInput
+  upsert: DetailUpsertNestedInput
+}
+
+input DetailUpsertNestedInput {
+  update: DetailUpdateDataInput!
+  create: DetailCreateInput!
+}
+
+input DetailWhereInput {
+  """Logical AND on all given filters."""
+  AND: [DetailWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [DetailWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [DetailWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  _MagicalBackRelation_DetailToPomodoro_every: PomodoroWhereInput
+  _MagicalBackRelation_DetailToPomodoro_some: PomodoroWhereInput
+  _MagicalBackRelation_DetailToPomodoro_none: PomodoroWhereInput
+}
+
+input DetailWhereUniqueInput {
+  id: ID
+}
+
+"""
+The `Long` scalar type represents non-fractional signed whole numeric values.
+Long can represent values between -(2^63) and 2^63 - 1.
+"""
+scalar Long
+
+type Mutation {
+  createPomodoro(data: PomodoroCreateInput!): Pomodoro!
+  createPrivateDetail(data: PrivateDetailCreateInput!): PrivateDetail!
+  createDetail(data: DetailCreateInput!): Detail!
+  updatePomodoro(data: PomodoroUpdateInput!, where: PomodoroWhereUniqueInput!): Pomodoro
+  updatePrivateDetail(data: PrivateDetailUpdateInput!, where: PrivateDetailWhereUniqueInput!): PrivateDetail
+  updateDetail(data: DetailUpdateInput!, where: DetailWhereUniqueInput!): Detail
+  deletePomodoro(where: PomodoroWhereUniqueInput!): Pomodoro
+  deletePrivateDetail(where: PrivateDetailWhereUniqueInput!): PrivateDetail
+  deleteDetail(where: DetailWhereUniqueInput!): Detail
+  upsertPomodoro(where: PomodoroWhereUniqueInput!, create: PomodoroCreateInput!, update: PomodoroUpdateInput!): Pomodoro!
+  upsertPrivateDetail(where: PrivateDetailWhereUniqueInput!, create: PrivateDetailCreateInput!, update: PrivateDetailUpdateInput!): PrivateDetail!
+  upsertDetail(where: DetailWhereUniqueInput!, create: DetailCreateInput!, update: DetailUpdateInput!): Detail!
+  updateManyPomodoroes(data: PomodoroUpdateInput!, where: PomodoroWhereInput): BatchPayload!
+  updateManyPrivateDetails(data: PrivateDetailUpdateInput!, where: PrivateDetailWhereInput): BatchPayload!
+  updateManyDetails(data: DetailUpdateInput!, where: DetailWhereInput): BatchPayload!
+  deleteManyPomodoroes(where: PomodoroWhereInput): BatchPayload!
+  deleteManyPrivateDetails(where: PrivateDetailWhereInput): BatchPayload!
+  deleteManyDetails(where: DetailWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+}
+
+type Pomodoro implements Node {
+  id: ID!
+  name: String!
+  pomodoros: Int!
+  completed: Boolean!
+  detail(where: DetailWhereInput): Detail
+}
+
+"""A connection to a list of items."""
+type PomodoroConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [PomodoroEdge]!
+  aggregate: AggregatePomodoro!
+}
+
+input PomodoroCreateInput {
+  name: String!
+  pomodoros: Int!
+  completed: Boolean!
+  detail: DetailCreateOneInput
+}
+
+"""An edge in a connection."""
+type PomodoroEdge {
+  """The item at the end of the edge."""
+  node: Pomodoro!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum PomodoroOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  pomodoros_ASC
+  pomodoros_DESC
+  completed_ASC
+  completed_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type PomodoroPreviousValues {
+  id: ID!
+  name: String!
+  pomodoros: Int!
+  completed: Boolean!
+}
+
+type PomodoroSubscriptionPayload {
+  mutation: MutationType!
+  node: Pomodoro
+  updatedFields: [String!]
+  previousValues: PomodoroPreviousValues
+}
+
+input PomodoroSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PomodoroSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PomodoroSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PomodoroSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: PomodoroWhereInput
+}
+
+input PomodoroUpdateInput {
+  name: String
+  pomodoros: Int
+  completed: Boolean
+  detail: DetailUpdateOneInput
+}
+
+input PomodoroWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PomodoroWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PomodoroWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PomodoroWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  pomodoros: Int
+
+  """All values that are not equal to given value."""
+  pomodoros_not: Int
+
+  """All values that are contained in given list."""
+  pomodoros_in: [Int!]
+
+  """All values that are not contained in given list."""
+  pomodoros_not_in: [Int!]
+
+  """All values less than the given value."""
+  pomodoros_lt: Int
+
+  """All values less than or equal the given value."""
+  pomodoros_lte: Int
+
+  """All values greater than the given value."""
+  pomodoros_gt: Int
+
+  """All values greater than or equal the given value."""
+  pomodoros_gte: Int
+  completed: Boolean
+
+  """All values that are not equal to given value."""
+  completed_not: Boolean
+  detail: DetailWhereInput
+}
+
+input PomodoroWhereUniqueInput {
+  id: ID
+}
+
+type PrivateDetail implements Node {
+  id: ID!
+  name: String!
+}
+
+"""A connection to a list of items."""
+type PrivateDetailConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [PrivateDetailEdge]!
+  aggregate: AggregatePrivateDetail!
+}
+
+input PrivateDetailCreateInput {
+  name: String!
+}
+
+"""An edge in a connection."""
+type PrivateDetailEdge {
+  """The item at the end of the edge."""
+  node: PrivateDetail!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum PrivateDetailOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type PrivateDetailPreviousValues {
+  id: ID!
+  name: String!
+}
+
+type PrivateDetailSubscriptionPayload {
+  mutation: MutationType!
+  node: PrivateDetail
+  updatedFields: [String!]
+  previousValues: PrivateDetailPreviousValues
+}
+
+input PrivateDetailSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PrivateDetailSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PrivateDetailSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PrivateDetailSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: PrivateDetailWhereInput
+}
+
+input PrivateDetailUpdateInput {
+  name: String
+}
+
+input PrivateDetailWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PrivateDetailWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PrivateDetailWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PrivateDetailWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+}
+
+input PrivateDetailWhereUniqueInput {
+  id: ID
+}
+
+type Query {
+  pomodoroes(where: PomodoroWhereInput, orderBy: PomodoroOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Pomodoro]!
+  privateDetails(where: PrivateDetailWhereInput, orderBy: PrivateDetailOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PrivateDetail]!
+  details(where: DetailWhereInput, orderBy: DetailOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Detail]!
+  pomodoro(where: PomodoroWhereUniqueInput!): Pomodoro
+  privateDetail(where: PrivateDetailWhereUniqueInput!): PrivateDetail
+  detail(where: DetailWhereUniqueInput!): Detail
+  pomodoroesConnection(where: PomodoroWhereInput, orderBy: PomodoroOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PomodoroConnection!
+  privateDetailsConnection(where: PrivateDetailWhereInput, orderBy: PrivateDetailOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PrivateDetailConnection!
+  detailsConnection(where: DetailWhereInput, orderBy: DetailOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DetailConnection!
+
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
+}
+
+type Subscription {
+  pomodoro(where: PomodoroSubscriptionWhereInput): PomodoroSubscriptionPayload
+  privateDetail(where: PrivateDetailSubscriptionWhereInput): PrivateDetailSubscriptionPayload
+  detail(where: DetailSubscriptionWhereInput): DetailSubscriptionPayload
+}

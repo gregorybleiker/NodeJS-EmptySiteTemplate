@@ -1,6 +1,10 @@
-type pomodoro {
-  id: ID! @unique
-  name: String!
-  pomodoros: Int!
-  completed: Boolean!
+# import Pomodoro from './generated/prisma.graphql'
+# import Detail from './generated/prisma.graphql'
+
+type Query {
+  sePomodoros(searchString: String): [Pomodoro!]!
 }
+
+# type Mutation {
+#  deletePomodoro(id: ID!): Pomodoro
+# }
