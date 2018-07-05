@@ -1,4 +1,3 @@
-/*
 const { GraphQLServer } = require("graphql-yoga");
 const { Prisma } = require("prisma-binding");
 
@@ -40,8 +39,8 @@ const options = {
 server.start(options, () =>
 console.log(`GraphQL server is running on http://localhost:8080`)
 );
-*/
 
+/*
 var http = require('http');
 
 http.createServer(function (req, res) {
@@ -50,4 +49,4 @@ http.createServer(function (req, res) {
     res.end(process.version);
     
 }).listen(process.env.PORT || 8080);
-
+*/
